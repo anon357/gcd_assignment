@@ -44,8 +44,8 @@ Full list of the included measurements:
 		- **fbodyaccmag.mean**
 		- **fbodyaccmag.std**
 	- magnitude of Jerk signals:
-		- **fbodybodyaccjerkmag.mean**
-		- **fbodybodyaccjerkmag.std**
+		- **fbodyaccjerkmag.mean**
+		- **fbodyaccjerkmag.std**
 - time domain, gravity part of the accelerometer mean and std signal
 	- coordinate measurements:
 		- **tgravityacc.mean.x, tgravityacc.mean.y, tgravityacc.mean.z**
@@ -72,9 +72,9 @@ Full list of the included measurements:
 		- **fbodygyro.mean.x, fbodygyro.mean.y, fbodygyro.mean.z**
 		- **fbodygyro.std.x, fbodygyro.std.y, fbodygyro.std.z**
 	- magnitude:
-		- **fbodybodygyromag.mean**
-		- **fbodybodygyromag.std**
+		- **fbodygyromag.mean**
+		- **fbodygyromag.std**
 	- magnitude of Jerk signals:
-		- **fbodybodygyrojerkmag.mean**
-		- **fbodybodygyrojerkmag.std**
+		- **fbodygyrojerkmag.mean**
+		- **fbodygyrojerkmag.std**
 

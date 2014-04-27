@@ -1,4 +1,4 @@
-## This script will load and clean a data set on human activity recognition using smartphones (retrieved from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip, described in more detailed on http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). The experiments were performed on a group of 30 volunteers, who each performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist, recording 3-axial linear acceleration and 3-axial angular velocity. The dataset was partitioned into a training set (70% of the participants) and a test set (30% of the participants). 
+## This script will load and clean a data set on human activity recognition using smartphones (retrieved from https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip, described in more detail on http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). The experiments were performed on a group of 30 volunteers, who each performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist, recording 3-axial linear acceleration and 3-axial angular velocity. The dataset was partitioned into a training set (70% of the participants) and a test set (30% of the participants). 
 ## The code in this script assumes that the data has been downloaded and unpacked, and are contained in a folder called "UCI HAR Dataset" in the current working directory. The script will perform the following steps:
 ## (1) Merge the training and test sets to create a single data set
 ## (2) Extract the mean and standard deviation observations for each measurement
@@ -30,6 +30,9 @@ keep.sd <- grep("-std()", features[, 2])
 x <- x[, union(keep.m, keep.sd)]
 features <- features[union(keep.m, keep.sd), 2]
 features <- gsub("-", ".", tolower(gsub("\\(\\)", "", features)))
+
+## Correct some variable names containing 'body' twice
+features <- gsub("bodybody", "body", features)
 colnames(x) <- features
 
 ## Rename the activities with more informative names
@@ -40,5 +43,8 @@ subj_activity <- paste(subj, activity, sep = ".")
 ## Create a second, independent tidy data set with the average 
 ## of each variable for each activity and each subject
 tidy.data <- apply(x, 2, function(y) tapply(y, subj_activity, mean))
+tidy.data <- cbind(subj.activity = rownames(tidy.data), tidy.data)
 
 ## Save the tidy data to a text file
+write.table(tidy.data, file = "tidy.data.txt", row.names = FALSE, 
+            col.names = TRUE, quote = FALSE, sep = "\t")
