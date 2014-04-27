@@ -9,9 +9,13 @@ To run the script, it is assumed that the data has been downloaded and unpacked,
 By sourcing the script (i.e., from within **R** typing *source("run_analysis.R")*, the following steps will be performed:
 
 (1) Merge the training and test sets to create a single data set
+
 (2) Extract the mean and standard deviation observations for each measurement
+
 (3) Name the activities in the data set
+
 (4) Label the data set with activity names
+
 (5) Create a second, tidy data set containing the average of each variable for each activity and each subject
 
 The final, tidy data set is saved in the current **R** environment as *tidy.data* and written to a test file named *tidy.data.txt*.
